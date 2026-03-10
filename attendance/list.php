@@ -66,7 +66,8 @@ Show Attendance
 <tr>
 <th>Employee</th>
 <th>Date</th>
-<th>Status</th>
+<th>Punch In</th>
+<th>Punch Out</th>
 </tr>
 
 </thead>
@@ -114,8 +115,7 @@ table.innerHTML = "";
 
 if(data.length == 0){
 
-table.innerHTML = "<tr><td colspan='3' class='text-center'>No Attendance Found</td></tr>";
-
+table.innerHTML = "<tr><td colspan='4' class='text-center'>No Attendance Found</td></tr>";
 return;
 
 }
@@ -123,23 +123,19 @@ return;
 for(var i=0;i<data.length;i++){
 
 table.innerHTML += `
+
 <tr>
 
 <td>${data[i].name}</td>
 
 <td>${data[i].attendance_date}</td>
 
-<td>
+<td>${data[i].punch_in ? data[i].punch_in : '-'}</td>
 
-<span class="badge ${data[i].status=='Present' ? 'bg-success' : 'bg-danger'}">
-
-${data[i].status}
-
-</span>
-
-</td>
+<td>${data[i].punch_out ? data[i].punch_out : '-'}</td>
 
 </tr>
+
 `;
 
 }

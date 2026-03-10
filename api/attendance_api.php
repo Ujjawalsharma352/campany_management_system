@@ -5,7 +5,6 @@ include("../config/db.php");
 header("Content-Type: application/json");
 
 $action = $_POST['action'] ?? $_GET['action'] ?? '';
-
 if($action == "fetch"){
 
 $date = $_GET['date'] ?? '';
@@ -51,7 +50,6 @@ exit();
 
 }
 
-
 if($action == "bulk_add"){
 
 $employee_ids = $_POST['employee_id'];
@@ -71,6 +69,67 @@ VALUES('$emp','$date','$status')
 }
 
 echo json_encode(["status"=>"success"]);
+exit();
+
+}
+
+if($action == "punch_in"){
+
+$employee_id = $_POST['employee_id'];
+
+$date = date("Y-m-d");
+$time = date("H:i:s");
+
+$check = mysqli_query($conn,"
+SELECT * FROM attendance
+WHERE employee_id='$employee_id'
+AND attendance_date='$date'
+");
+
+if(mysqli_num_rows($check) > 0){
+
+echo json_encode([
+"status"=>"exists",
+"message"=>"Already Punched In"
+]);
+
+exit();
+
+}
+
+mysqli_query($conn,"
+INSERT INTO attendance(employee_id,attendance_date,punch_in,status)
+VALUES('$employee_id','$date','$time','IN')
+");
+
+echo json_encode([
+"status"=>"success",
+"message"=>"Punch In Successful"
+]);
+
+exit();
+
+}
+
+if($action == "punch_out"){
+
+$employee_id = $_POST['employee_id'];
+
+$date = date("Y-m-d");
+$time = date("H:i:s");
+
+mysqli_query($conn,"
+UPDATE attendance
+SET punch_out='$time', status='OUT'
+WHERE employee_id='$employee_id'
+AND attendance_date='$date'
+");
+
+echo json_encode([
+"status"=>"success",
+"message"=>"Punch Out Successful"
+]);
+
 exit();
 
 }
