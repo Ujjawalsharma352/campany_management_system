@@ -1,5 +1,7 @@
 <?php
 
+date_default_timezone_set("Asia/Kolkata");
+
 include("../config/db.php");
 
 header("Content-Type: application/json");
