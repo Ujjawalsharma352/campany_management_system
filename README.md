@@ -105,16 +105,16 @@ config/db.php
 8. 
 http://localhost/company_management_system/index.php
 
-## What I Learned From This Project
-hile building this project, I learned:
-
-* How CRUD operations work in PHP
-* How to structure backend APIs
-* Database integration using MySQL
-* Creating admin dashboards
-* Handling authentication and sessions
-* Using JavaScript to interact with backend APIs
-* Organizing a full stack project structure
+##What I Learned From This Project
+While building this project, I gained hands-on experience in:
+*Structuring a full-stack web project.
+*CRUD operations with PHP and MySQL.
+*Creating RESTful APIs for backend operations.
+*Handling sessions, authentication, and authorization.
+*Using JavaScript and AJAX for dynamic frontend updates.
+*Designing responsive layouts with Bootstrap.
+*Organizing project folders and code for scalability.
+*Implementing dashboards and visual data representation.
 
 ## Future Improvements
 Some features that can be added in the future:
